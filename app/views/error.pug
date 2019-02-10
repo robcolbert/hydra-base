@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  if error && error.status
+    div.small.text-muted status:#{error.status}
+  h1= message
+  if error.stack
+    pre= error.stack

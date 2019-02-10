@@ -1,0 +1,9 @@
+extends ../layout
+block content
+  if !user
+    p Let's get you Connected With Gab.
+  else
+    h1 Welcome to #{site.name}
+    p #{site.name} is the online home of development for the HYDRA platform. HYDRA is a web application development environment that ships with the ability to connect to #[a(href='https://gab.com') Gab.com]. This base project allows people to build all kinds of web sites that automatically let members of Gab.com log in and participate.
+    p You have already completed that process here at #{site.name}. Your #[a(href=`/user/${user.username}`) user profile] has been set up using defaults supplied by Gab.com. If you make any changes to your profile at Gab.com, just log out and log back in here. You won't lose any data here, that's just how to "refresh" your user profile record here. Eventually, this will be automatic.
+    a(href=`/user/${user.username}`).btn.btn-primary Got it!

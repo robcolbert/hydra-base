@@ -1,0 +1,24 @@
+mixin renderPaginationBar (baseUrl, totalItemCount, urlParameters = '')
+  -
+    var startPage = pagination.p - 2;
+    if (startPage < 1) {
+      startPage = 1;
+    }
+    var endPage = startPage + 4;
+    var lastPage = Math.floor(totalItemCount / pagination.cpp);
+    if ((totalItemCount % pagination.cpp) !== 0) {
+      ++lastPage;
+    }
+    if (endPage > lastPage) {
+      endPage = lastPage;
+    }
+
+  nav(aria-label="Page navigation")
+    ul.pagination.justify-content-center
+      li(class= pagination.p === 1 ? 'disabled' : undefined).page-item
+        a(href=`${baseUrl}?p=${pagination.p - 1}${urlParameters}`).page-link Prev
+      while startPage <= endPage
+        li(class= startPage === pagination.p ? 'active' : undefined).page-item
+          a(href=`${baseUrl}?p=${startPage}${urlParameters}`).page-link= startPage++
+      li(class= pagination.p === lastPage ? 'disabled' : undefined).page-item
+        a(href=`${baseUrl}?p=${pagination.p + 1}${urlParameters}`).page-link Next

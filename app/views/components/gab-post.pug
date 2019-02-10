@@ -1,0 +1,53 @@
+mixin renderGabPost (post)
+  div.gab-post
+    div.row.mb-3
+      div.col-auto
+        div.user-picture-container
+          img(src= post.post.user.picture_url).user-picture
+      div.col
+        div.row.align-items-center
+          div.col-auto.mr-auto
+            div.post-name
+              a(href=`https://gab.com/${post.post.user.username}`)= post.post.user.name
+          div.col-auto
+            div.post-username
+              a(href=`https://gab.com/${post.post.user.username}`)= post.post.user.username
+        div.small.text-muted
+          a(href=`https://gab.com/${post.post.user.username}/posts/${post.post.id}`)= moment(post.post.created_at).fromNow()
+
+    div.post-body.mb-3
+      if post.post && post.post.body
+        div!= anchorme(gabparse(post.post.body.replace(/\n/g, '<br/>')), { truncate: [32, 24], attributes: [{ name: 'class', value: 'hydra-truncated-link' }] })
+    
+    if post.post.attachment && post.post.attachment.type
+      case post.post.attachment.type
+        when 'media'
+          div.image-slider.mb-3
+            each attachment in post.post.attachment.value
+              div.image-card.mx-auto
+                img(src= attachment.url_thumbnail, onclick=`return window.hydra.client.showLightbox('${attachment.url_full}');`)
+    
+    if post.parent
+      h1 EMBEDDED
+      +renderGabPost(post.parent)
+
+    div.post-footer
+      div.row.small
+        div.col-auto
+          span.mr-2
+            i.fas.fa-chevron-up
+          span= post.post.like_count
+        div.col-auto
+          span.mr-2
+            i.fas.fa-chevron-down
+          span= post.post.dislike_count
+        div.col-auto
+          span.mr-2
+            i.fas.fa-redo-alt
+          span= post.post.reply_count
+        div.col-auto
+          span.mr-2
+            i.fas.fa-quote-left
+          span= post.post.repost_count
+  
+  //- pre= JSON.stringify(post, null, 2)

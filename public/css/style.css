@@ -1,0 +1,155 @@
+/*
+ * style.less
+ * Copyright (C) 2019 Gab AI, Inc.
+ * License: MIT
+ */
+/*
+ * main.less
+ * Copyright (C) 2019 Gab AI, Inc.
+ * License: MIT
+ */
+body {
+  padding: 0;
+  margin: 0;
+}
+a {
+  color: #00B7FF;
+}
+a.hydra-truncated-link {
+  display: inline-block;
+  word-wrap: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+/*
+ * user-profile.less
+ * Copyright (C) 2019 Gab AI, Inc.
+ * License: MIT
+ */
+.hydra .user-profile {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.hydra .user-profile div.user-profile-container {
+  padding: 1em;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.hydra .user-profile div.user-profile-container div.profile-image-container {
+  position: relative;
+  margin: 0 auto;
+  width: 200px;
+}
+.hydra .user-profile div.user-profile-container div.profile-image-container img.profile-user-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2) inset;
+}
+.hydra .user-profile div.user-profile-container div.profile-image-container div.profile-verified-check {
+  display: block;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 7%;
+  bottom: 7%;
+  font-size: 24px;
+  color: #487fff;
+  border: solid 2px white;
+  border-radius: 50%;
+  line-height: 0;
+  background-color: white;
+}
+.hydra .user-profile div.user-profile-container div.profile-name {
+  font-size: 2em;
+  font-weight: bold;
+  line-height: 1em;
+}
+.hydra .user-profile div.user-profile-container div.profile-username {
+  font-size: 0.8em;
+}
+/*
+ * gab-post.less
+ * Copyright (C) 2019 Gab AI, Inc.
+ * License: MIT
+ */
+.hydra .gab-post {
+  padding: 1em;
+  border: solid 1px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+.hydra .gab-post div.user-picture-container {
+  width: 64px;
+}
+.hydra .gab-post div.user-picture-container img.user-picture {
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+.hydra .gab-post div.post-name {
+  font-size: 1.25em;
+  line-height: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.hydra .gab-post div.post-username {
+  font-size: 0.8em;
+  line-height: 1;
+}
+.hydra .gab-post div.image-slider {
+  display: flex;
+  width: 100%;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+.hydra .gab-post div.image-slider div.image-card {
+  display: block;
+  padding: 4px;
+  border: solid 1px rgba(0, 0, 0, 0.2);
+}
+.hydra .gab-post div.image-slider div.image-card img {
+  display: block;
+  width: auto;
+  height: 240px;
+}
+/*
+ * lightbox.less
+ * Copyright (C) 2019 Gab AI, Inc.
+ * License: MIT
+ */
+.hydra div.hydra-lightbox {
+  position: fixed;
+  box-sizing: border-box;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(24, 40, 24, 0.8);
+  user-select: none;
+  overflow: auto;
+}
+.hydra div.hydra-lightbox div.image-container {
+  display: block;
+  box-sizing: border-box;
+  min-width: 60%;
+  max-width: 90%;
+  margin: 0 auto;
+}
+.hydra div.hydra-lightbox div.image-container img.lightbox-image {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  pointer-events: none;
+  border: solid 15px white;
+  margin: 1em 0;
+}

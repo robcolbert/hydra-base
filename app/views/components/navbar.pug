@@ -1,0 +1,27 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.mb-3
+  a(href="/").navbar-brand
+    img(src="/img/gab-logo.sm.png", height="30").d-inline-block.mr-3
+    span= site.name
+  button(type="button", data-toggle="collapse", data-target="#navbarContent", aria-controls="navbarContent", aria-expanded="false", aria-label="Toggle navigation").navbar-toggler
+    span().navbar-toggler-icon
+
+  div(id="navbarContent").collapse.navbar-collapse
+    ul.navbar-nav.mr-2.mr-auto
+      li(class= currentView === 'home' ? 'active' : undefined).nav-item
+        a(href="/").nav-link Home
+
+    if !user
+      ul.navbar-nav.mr-3
+        span.navbar-text
+          a(href="/user/connect/gab").nav-link Connect With Gab
+    else
+      ul.navbar-nav.mr-3
+        span.navbar-text
+          a(href=`/user/${user.username_lc}`, class= currentView === 'user-profile' ? 'active' : undefined).nav-link= user.username
+        //- if user && user.flags.isAdmin
+        //-   span.navbar-text
+        //-     a(href="/admin", class= currentView === 'admin' ? 'active' : undefined).nav-link admin
+
+    //- form(method="GET", action="/search").form-inline.my-2.my-lg-0
+    //-   input(id="search", name="q", type="search", placeholder="Search", value= query ? query.q : undefined, aria-label="Search").form-control.mr-sm-2
+    //-   button(type="submit").btn.btn-primary.my-2.my-sm-0 Search

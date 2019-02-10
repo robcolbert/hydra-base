@@ -1,0 +1,59 @@
+/*
+ * user-profile.less
+ * Copyright (C) 2019 Gab AI, Inc.
+ * License: MIT
+ */
+
+.hydra {
+
+  .user-profile {
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    div.user-profile-container {
+      padding: 1em;
+      background-color: rgba(255,255,255,0.9);
+
+      div.profile-image-container {
+        position: relative;
+        margin: 0 auto;
+        width: 200px;
+  
+        img.profile-user-img {
+          display: block;
+          width: 100%;
+          height: auto;
+          border-radius: 50%;
+          box-shadow: 0 0 12px rgba(0,0,0,0.2) inset;
+        }
+  
+        div.profile-verified-check {
+          display: block;
+          margin: 0;
+          padding: 0;
+          position: absolute;
+          right: 7%;
+          bottom: 7%;
+          font-size: 24px;
+          color: #487fff;
+          border: solid 2px white;
+          border-radius: 50%;
+          line-height: 0;
+          background-color: white;
+        }
+      }
+
+      div.profile-name {
+        font-size: 2em;
+        font-weight: bold;
+        line-height: 1em;
+      }
+      div.profile-username {
+        font-size: 0.8em;
+      }
+      div.profile-bio {
+  
+      }
+    }
+  }
+}

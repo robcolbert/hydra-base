@@ -1,0 +1,68 @@
+extends ../layout
+block content
+
+  include ../components/gab-post
+  mixin renderProfileFlag (flag, flagName)
+    if flag
+      div.col-auto
+        span.badge.badge-success #{flagName}
+  
+  div(style=`background-image: url('${userProfile.cover_url}');`).user-profile.text-center.text-lg-left.mb-3
+    div.user-profile-container
+      div.row
+        div.col-lg-auto
+          div.profile-image-container.mb-3.mb-lg-0
+            img(src= userProfile.picture_url_full, alt="Gab.com Profile Photo").profile-user-img
+            if userProfile.flags.verified
+              div.profile-verified-check
+                i.fas.fa-check-circle
+        div.col-lg
+          div.profile-name= userProfile.name
+          div.profile-username.mb-2
+            a(href=`https://gab.com/${userProfile.username}`) @#{userProfile.username}
+          div.profile-bio.mb-2!= anchorme(gabparse(userProfile.bio))
+          div.profile-flags
+            div.row
+              +renderProfileFlag(userProfile.flags && userProfile.flags.is_pro, 'PRO')
+              +renderProfileFlag(userProfile.flags && userProfile.flags.is_donor, 'DONOR')
+              +renderProfileFlag(userProfile.flags && userProfile.flags.is_investor, 'INVESTOR')
+              +renderProfileFlag(userProfile.flags && userProfile.flags.is_premium, 'PREMIUM')
+              +renderProfileFlag(userProfile.flags && userProfile.flags.is_tippable, 'TIPPABLE')
+              +renderProfileFlag(userProfile.flags && userProfile.flags.is_private, 'PRIVATE')
+              +renderProfileFlag(userProfile.flags && userProfile.flags.is_accessible, 'ACCESSIBLE')
+        div.col-lg-auto
+          a(href='/user/logout').btn.btn-dark Logout
+
+  div.row
+    div.col-lg-8
+      form(method='POST', action='/', onclick='return hydra.client.postGab(event);').form.mb-3
+        div.card
+          h4.card-header Post gab
+          div.card-body
+            div.form-group.my-0
+              textarea(id="body", name="body", rows="4", placeholder="Speak freely!").form-control
+          div.card-footer
+            div.row.align-items-center
+              div.col-auto
+                button(type="submit").btn.btn-primary Publish
+              div.col-auto
+                div.form-check
+                  input(id="nsfw", name="nsfw", type="checkbox").form-check-input
+                  label(for="nsfw").form-check-label NSFW
+      each feedItem in userFeed.data
+        div.mb-3
+          +renderGabPost(feedItem)
+          //- pre= JSON.stringify(feedItem, null, 2)
+    div.col-lg-4
+      div.card.mb-3
+        h4.card-header Current Top News
+        ul.list-group.list-group-flush
+          each feedItem in topNews.rssFeedItems
+            li.list-group-item
+              div
+                a(href= feedItem.link).mr-2= feedItem.title
+              div.row.justify-content-between
+                div.col-auto
+                  span.small.text-muted.mr-2= feedItem.feed.title
+                div.col-auto
+                  span.small.text-muted= moment(feedItem.created).fromNow()
