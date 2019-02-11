@@ -1,15 +1,4 @@
 extends layout
 block content
 
-  include components/comment-list
-
-  if !user
-    div.text-center.mb-3
-      a(href='/user/connect/gab').btn.btn-primary Connect With Gab
-  else
-    form(method="GET", action=`/extension-view`).form.mb-3
-      .form-group
-        input(id="url", name="url", type="url", placeholder="Paste URL to begin...").form-control
-
-  h2.text-center.text-lg-left Recent Comments
-  +renderCommentList(comments)
+  div!= marked(content)

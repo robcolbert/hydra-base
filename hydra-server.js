@@ -1,6 +1,6 @@
 // hydra-server.js
 // Copyright (C) 2019 Gab AI, Inc.
-// All Rights Reserved
+// License: MIT
 
 (( ) => {
 'use strict';
@@ -253,7 +253,7 @@ class HydraServer {
             }
           );
         }));
-
+        
       }
     }
 

@@ -1,6 +1,6 @@
 // user.js
 // Copyright (C) 2019 Gab AI, Inc.
-// All Rights Reserved
+// License: MIT
 
 'use strict';
 
@@ -46,16 +46,16 @@ module.exports = (app) => {
     redirectUri: module.config.gab.redirectUri,
     saveUserAccessToken: module.saveUserAccessToken,
     scopes: 'read write-post'
-  });
+  });  
 
   router.get('/connect/gab', (req, res, next) => {
     req.session.redirectUri = module.config.gab.redirectUri;
     res.header('Cache-Control', 'no-cache');
     return next();
-  }, module.gabapi.authorize);
+  }, module.gabapi.authorize);  
 
   app.use('/user', router);
-};
+};  
 
 /*
  * Module Methods

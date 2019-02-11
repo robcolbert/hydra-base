@@ -18,11 +18,10 @@ const path = require('path');
 const log = require(path.join(config.root, 'hydra-winston'))(config);
 
 /*
- * Print legal notices to the log.
+ * Always print legal notice to the console and all log files.
  */
-log.info('Dissenter by Gab.com Copyright (C) 2019 Gab AI, Inc.');
-log.info('All Rights Reserved');
-log.info('LOG CONTENTS ARE COMPANY CONFIDENTIAL');
+log.info('HYDRA Copyright (C) 2019 Gab AI, Inc.');
+log.info('License: MIT');
 
 /*
  * Start your engines!

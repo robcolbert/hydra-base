@@ -1,6 +1,6 @@
 // hydra-io-server.js
 // Copyright (C) 2019 Gab AI, Inc.
-// All Rights Reserved
+// License: MIT
 
 'use strict';
 
@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 const HydraError = require(path.join(__dirname, 'app', 'hydra-error'));
 
 class HydraIoServer {
-
+  
   constructor (server) {
     var self = this;
 

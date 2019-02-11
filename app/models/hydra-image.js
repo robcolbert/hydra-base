@@ -1,6 +1,6 @@
 // hydra-image.js
 // Copyright (C) 2019 Gab AI, Inc.
-// All Rights Reserved
+// License: MIT
 
 'use strict';
 

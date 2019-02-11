@@ -1,6 +1,6 @@
 // gulpfile.js
 // Copyright (C) 2019 Gab AI, Inc.
-// All Rights Reserved
+// License: MIT
 
 'use strict';
 
@@ -20,11 +20,7 @@ gulp.task('less', () => {
 });
 
 gulp.task('watch', () => {
-  var files = [
-    './public/css/**/*.less',
-    './public/css/hydra/*.less'
-  ];
-  gulp.watch(files, ['less']);
+  gulp.watch('./public/css/**/*.less', ['less']);
 });
 
 gulp.task('develop', () => {

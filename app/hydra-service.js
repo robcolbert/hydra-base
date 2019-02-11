@@ -1,20 +1,12 @@
 // hydra-service.js
 // Copyright (C) 2019 Gab AI, Inc.
-// All Rights Reserved
+// License: MIT
 
 'use strict';
 
 const crypto = require('crypto');
 const fs = require('fs');
 const csv = require('csv');
-
-const url = require('url');
-const querystring = require('querystring');
-const request = require('request-promise-native');
-
-const jsdom = require('jsdom');
-const { JSDOM } = jsdom;
-
 const Jimp = require('jimp');
 
 const mongoose = require('mongoose');
@@ -114,12 +106,6 @@ class HydraService {
     return hash.digest('hex');
   }
 
-  createHash (content, algorithm = 'sha256') {
-    const hash = crypto.createHash(algorithm);
-    hash.update(content);
-    return hash.digest('hex');
-  }
-
   stripPhoneNumber (phoneNumber) {
     const phoneStripRegEx = /[.,\/#!$%\^&\*;:{}=\-_`~()]/g;
     const spaceStripRegEx = / /g;
@@ -140,86 +126,6 @@ class HydraService {
       cpp: cpp,
       skip: skip
     };
-  }
-
-  isCheckboxChecked (value) {
-    return value === true || value === 1 || value === 'on';
-  }
-
-  parseUrl (sourceUrl) {
-    var response = { sourceUrl: sourceUrl };
-    response.url = url.parse(sourceUrl.toLowerCase());
-    response.url.query = querystring.parse(response.url.query);
-    response.domainName = response.url.hostname.toLowerCase();
-
-    var keys = Object.keys(response.url.query);
-    keys.forEach((key) => {
-      if (response.url.query[key].startsWith('utm_')) {
-        delete response.url.query[key];
-      }
-    });
-
-    return response;
-  }
-
-  getUrlTitle (url) {
-    var self = this;
-    return self
-    .getUrlTitleCache(url)
-    .then((title) => {
-      if (title) {
-        return Promise.resolve(title);
-      }
-      return request(url)
-      .then((response) => {
-        var dom = new JSDOM(response);
-        var title = dom.window.document.title;
-        if (!title || !title.length) {
-          title = url;
-        }
-        return self.setUrlTitleCache(url, title);
-      });
-    });
-  }
-
-  setUrlTitleCache (url, title) {
-    var self = this;
-    var urlHash = self.createHash(url, 'sha256');
-    var cacheKey = `dissent:url:${urlHash}:title`;
-    return new Promise((resolve, reject) => {
-      self.redis.setex(cacheKey, 60 * 15, title, (err) => {
-        if (err) {
-          return reject(err);
-        }
-        return resolve(title);
-      });
-    });
-  }
-
-  getUrlTitleCache (url) {
-    var self = this;
-    var urlHash = self.createHash(url, 'sha256');
-    var cacheKey = `dissent:url:${urlHash}:title`;
-    return new Promise((resolve, reject) => {
-      self.redis.get(cacheKey, (err, title) => {
-        if (err) {
-          return reject(err);
-        }
-        return resolve(title);
-      });
-    });
-  }
-
-  publishWorkerJob (jobDescription) {
-    var self = this;
-    return new Promise((resolve, reject) => {
-      self.redis.publish('hydra-worker', JSON.stringify(jobDescription), (err) => {
-        if (err) {
-          return reject(err);
-        }
-        return resolve(jobDescription);
-      });
-    });
   }
 
   writeFile (filename, fileData) {
