@@ -1,6 +1,6 @@
 // config.js
 // Copyright (C) 2019 Gab AI, Inc.
-// License: MIT
+// All Rights Reserved
 
 const path = require('path');
 const rootPath = path.normalize(__dirname + '/..');
@@ -10,9 +10,9 @@ const IMAGE_MAX_AGE = 1000 * 60 * 60 * 24;
 const IMAGE_CLEAN_INTERVAL = 1000 * 60 * 60;
 const HYDRA_SESSION_DURATION = 1000 * 60 * 60 * 24 * 365;
 
-const HYDRA_APP_NAME = 'HYDRA Base Station';
-const HYDRA_APP_SLUG = 'hydra-base';
-const HYDRA_APP_SLOGAN = 'Fighting censorship by decentralizing the conversation.';
+const HYDRA_APP_NAME = 'Dissenter';
+const HYDRA_APP_SLUG = 'dissenter';
+const HYDRA_APP_SLOGAN = 'Comment on any URL online';
 const HYDRA_APP_DOMAIN = `${HYDRA_APP_SLUG}.openplatform.us`;
 const HYDRA_DEV_DOMAIN = `${HYDRA_APP_SLUG}.openplatform.us`;
 
@@ -41,6 +41,22 @@ const config = {
         file: `${HYDRA_APP_SLUG}-app`,
         level: 'debug'
       },
+      limits: {
+        comment: {
+          rateMaxCount: 4,
+          rateMaxPeriod: 60,
+          rateLimitPrefix: 'gab:comment:create:',
+          rateLimitStatus: 429,
+          rateLimitMessage: 'You are commenting too quickly. Slow down.'
+        },
+        vote: {
+          rateMaxCount: 10,
+          rateMaxPeriod: 60,
+          rateLimitPrefix: 'gab:comment:vote:',
+          rateLimitStatus: 429,
+          rateLimitMessage: 'You are voting too quickly. Slow down.'
+        }
+      }
     },
     worker: {
       postGabs: false,
@@ -56,8 +72,8 @@ const config = {
       disks: ['/']
     },
     gab: {
-      clientId: process.env.HYDRA_BASESTATION_CLIENT_ID,
-      clientSecret: process.env.HYDRA_BASESTATION_CLIENT_SECRET,
+      clientId: process.env.HYDRA_DISSENTER_CLIENT_ID,
+      clientSecret: process.env.HYDRA_DISSENTER_CLIENT_SECRET,
       authorizeUri: `http://local.${HYDRA_DEV_DOMAIN}:3000/user/connect/gab`,
       redirectUri: `http://local.${HYDRA_DEV_DOMAIN}:3000/user`
     },
@@ -133,6 +149,22 @@ const config = {
         file: `${HYDRA_APP_SLUG}-app`,
         level: 'info'
       },
+      limits: {
+        comment: {
+          rateMaxCount: 4,
+          rateMaxPeriod: 60,
+          rateLimitPrefix: 'gab:comment:',
+          rateLimitStatus: 429,
+          rateLimitMessage: 'You are commenting too quickly. Slow down.'
+        },
+        vote: {
+          rateMaxCount: 10,
+          rateMaxPeriod: 60,
+          rateLimitPrefix: 'gab:comment:vote:',
+          rateLimitStatus: 429,
+          rateLimitMessage: 'You are voting too quickly. Slow down.'
+        }
+      }
     },
     worker: {
       postGabs: true,
@@ -148,8 +180,8 @@ const config = {
       disks: ['/']
     },
     gab: {
-      clientId: process.env.HYDRA_BASESTATION_CLIENT_ID,
-      clientSecret: process.env.HYDRA_BASESTATION_CLIENT_SECRET,
+      clientId: process.env.HYDRA_GABCOMMENTS_CLIENT_ID,
+      clientSecret: process.env.HYDRA_GABCOMMENTS_CLIENT_SECRET,
       authorizeUri: `http://local.${HYDRA_APP_DOMAIN}:3000/user/connect/gab`,
       redirectUri: `http://local.${HYDRA_APP_DOMAIN}:3000/user`
     },

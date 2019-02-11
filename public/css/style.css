@@ -1,79 +1,113 @@
 /*
  * style.less
  * Copyright (C) 2019 Gab AI, Inc.
- * License: MIT
+ * All Rights Reserved
+ */
+/*
+ * mixins.less
+ * Copyright (C) 2019 Gab AI, Inc.
+ * All Rights Reserved
  */
 /*
  * main.less
  * Copyright (C) 2019 Gab AI, Inc.
- * License: MIT
+ * All Rights Reserved
  */
-body {
+body.hydra {
   padding: 0;
   margin: 0;
 }
-a {
+body.hydra.hydra-embedded {
+  padding-top: 60px;
+  padding-bottom: 1em;
+}
+a,
+a:focus {
   color: #00B7FF;
 }
-a.hydra-truncated-link {
-  display: inline-block;
-  word-wrap: none;
-  white-space: nowrap;
+/*
+ * comment.less
+ * Copyright (C) 2019 Gab AI, Inc.
+ * All Rights Reserved
+ */
+.hydra div.comment {
+  font-size: 14px;
+  border: solid 1px #e8e8e8;
+}
+.hydra div.comment.comment-reply {
+  margin-left: 1em;
+}
+.hydra div.comment img.profile-picture {
+  display: block;
+  width: 40px;
+  border-radius: 50%;
+}
+.hydra div.comment div.comment-header {
+  padding: 0.5em;
+}
+.hydra div.comment div.comment-header div.profile-name {
+  font-size: 1.25em;
+  line-height: 1;
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
-  width: 100%;
+}
+.hydra div.comment div.comment-header div.profile-username {
+  line-height: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.hydra div.comment div.comment-content {
+  padding: 0.5em;
+}
+.hydra div.comment div.comment-content div.comment-body {
+  max-height: 300px;
+  overflow-y: auto;
+}
+.hydra div.comment div.comment-content div.comment-body p:last-child {
+  margin-bottom: 0;
+}
+.hydra div.comment div.comment-attribution,
+.hydra div.comment div.comment-footer {
+  padding: 0.3em 0.5em;
 }
 /*
- * user-profile.less
+ * extension-view.less
  * Copyright (C) 2019 Gab AI, Inc.
- * License: MIT
+ * All Rights Reserved
  */
-.hydra .user-profile {
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.hydra .user-profile div.user-profile-container {
-  padding: 1em;
-  background-color: rgba(255, 255, 255, 0.9);
-}
-.hydra .user-profile div.user-profile-container div.profile-image-container {
-  position: relative;
-  margin: 0 auto;
-  width: 200px;
-}
-.hydra .user-profile div.user-profile-container div.profile-image-container img.profile-user-img {
-  display: block;
+.hydra div.extension-view {
+  position: fixed:
+    top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  height: auto;
-  border-radius: 50%;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2) inset;
 }
-.hydra .user-profile div.user-profile-container div.profile-image-container div.profile-verified-check {
-  display: block;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  right: 7%;
-  bottom: 7%;
-  font-size: 24px;
-  color: #487fff;
-  border: solid 2px white;
-  border-radius: 50%;
-  line-height: 0;
-  background-color: white;
+.hydra div.extension-view div.extension-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px 0;
+  line-height: 1;
 }
-.hydra .user-profile div.user-profile-container div.profile-name {
-  font-size: 2em;
+.hydra div.extension-view div.extension-header div.extension-title {
   font-weight: bold;
-  line-height: 1em;
+  line-height: 1;
 }
-.hydra .user-profile div.user-profile-container div.profile-username {
-  font-size: 0.8em;
+.hydra div.extension-view div.extension-footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
 }
 /*
  * gab-post.less
  * Copyright (C) 2019 Gab AI, Inc.
- * License: MIT
+ * All Rights Reserved
  */
 .hydra .gab-post {
   padding: 1em;
@@ -121,7 +155,7 @@ a.hydra-truncated-link {
 /*
  * lightbox.less
  * Copyright (C) 2019 Gab AI, Inc.
- * License: MIT
+ * All Rights Reserved
  */
 .hydra div.hydra-lightbox {
   position: fixed;
@@ -152,4 +186,51 @@ a.hydra-truncated-link {
   pointer-events: none;
   border: solid 15px white;
   margin: 1em 0;
+}
+/*
+ * user-profile.less
+ * Copyright (C) 2019 Gab AI, Inc.
+ * All Rights Reserved
+ */
+.hydra .user-profile {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.hydra .user-profile div.user-profile-container {
+  padding: 1em;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.hydra .user-profile div.user-profile-container div.profile-image-container {
+  position: relative;
+  margin: 0 auto;
+  width: 200px;
+}
+.hydra .user-profile div.user-profile-container div.profile-image-container img.profile-user-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2) inset;
+}
+.hydra .user-profile div.user-profile-container div.profile-image-container div.profile-verified-check {
+  display: block;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 7%;
+  bottom: 7%;
+  font-size: 24px;
+  color: #487fff;
+  border: solid 2px white;
+  border-radius: 50%;
+  line-height: 0;
+  background-color: white;
+}
+.hydra .user-profile div.user-profile-container div.profile-name {
+  font-size: 2em;
+  font-weight: bold;
+  line-height: 1em;
+}
+.hydra .user-profile div.user-profile-container div.profile-username {
+  font-size: 0.8em;
 }

@@ -1,0 +1,54 @@
+/*
+ * comment.less
+ * Copyright (C) 2019 Gab AI, Inc.
+ * All Rights Reserved
+ */
+
+.hydra {
+
+  div.comment {
+    font-size: 14px;
+    border: solid 1px #e8e8e8;
+
+    &.comment-reply {
+      margin-left: 1em;
+    }
+
+    img.profile-picture {
+      display: block;
+      width: 40px;
+      border-radius: 50%;
+    }
+
+    div.comment-header {
+      padding: 0.5em;
+
+      div.profile-name {
+        font-size: 1.25em;
+        .noWordWrap();
+      }
+
+      div.profile-username {
+        .noWordWrap();
+      }
+    }
+
+    div.comment-content {
+      padding: 0.5em;
+
+      div.comment-body {
+        max-height: 300px;
+        overflow-y: auto;
+
+        p:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    div.comment-attribution,
+    div.comment-footer {
+      padding: 0.3em 0.5em;
+    }
+  }
+}

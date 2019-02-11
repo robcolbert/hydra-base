@@ -1,0 +1,48 @@
+extends ../layout-embedded
+block content
+
+  include ../components/comment-list
+
+  .extension-view
+
+    .container.mb-3
+      form(method='POST', action='/comment').form
+        input(id="url", name="url", type="hidden", value= analyzedUrl.sourceUrl)
+        .form-group
+          textarea(id="body", name="body", rows="3", placeholder="Comment freely!").form-control
+        div.d-flex.align-items-center
+          div.mr-3
+            button(type="submit").btn.btn-primary.btn-sm.mb-2 Publish Comment
+          div.mr-2
+            .form-check.mb-2
+              input(id="nsfw", name="nsfw", type="checkbox").form-check-input
+              label(for="nsfw").form-check-label NSFW
+          div
+            .form-check.mb-2
+              input(id="share-to-gab", name="shareToGab", type="checkbox", checked).form-check-input
+              label(for="nsfw").form-check-label Share to Gab
+
+    .container.mb-3
+      +renderCommentList(comments)
+
+    .extension-header.bg-dark.text-light.mb-3
+      .container
+        .row.justify-content-between
+          .col-md-auto
+            .extension-title #{site.name} by Gab.com
+          .col-md-auto.small
+            span.domain-name.font-weight-bold.mr-1= analyzedUrl.url.pathname === '/' ? 'home' : analyzedUrl.url.pathname
+            span.domain-name-label.mr-1 on
+            span.domain-name.font-weight-bold= analyzedUrl.domainName
+
+    .extension-footer.bg-dark.text-light.small
+      .container
+        .row
+          .col-auto
+            span= user.username
+
+block viewjs
+  script(src='/js/gab-dissent.js')
+  script.
+    var hydra = window.hydra = window.hydra || { };
+    hydra.dissent = new hydra.GabDissent();

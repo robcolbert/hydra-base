@@ -16,13 +16,10 @@ html(lang='en')
       script(src="/bootstrap/js/bootstrap.min.js")
       script(src="/fontawesome/js/fontawesome.min.js")
 
-  body.hydra
-
-    include components/navbar
+  body.hydra.hydra-embedded
 
     block content-container
-      div.container
-        block content
+      block content
 
       hr
 

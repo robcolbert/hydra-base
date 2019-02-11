@@ -1,0 +1,7 @@
+include ../components/comment
+mixin renderCommentList (comments, label = 'comments')
+  if !comments || !comments.length
+    div.text-center There are no #{label}.
+  else
+    each comment in comments
+      +renderComment(comment)

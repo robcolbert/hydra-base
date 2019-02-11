@@ -1,6 +1,6 @@
 // express.js
 // Copyright (C) 2019 Gab AI, Inc.
-// License: MIT
+// All Rights Reserved
 
 'use strict';
 
@@ -34,7 +34,7 @@ module.exports = (app, config) => {
   const log = app.locals.log;
   app.locals.ENV = env;
   app.locals.ENV_DEVELOPMENT = (env === 'development') || (env === 'local');
-  
+
   app.set('views', config.root + '/app/views');
   app.set('view engine', 'pug');
 
