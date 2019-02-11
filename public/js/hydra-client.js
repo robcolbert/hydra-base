@@ -1,6 +1,6 @@
 // hydra-client.js
 // Copyright (C) 2019 Gab AI, Inc.
-// License: MIT
+// All Rights Reserved
 
 var hydra = window.hydra = window.hydra || { };
 
@@ -148,7 +148,7 @@ class HydraClient {
     }
 
     var messages = document.getElementById('chat-messages');
-    
+
     var messageContainer = document.createElement('div');
     messageContainer.classList.add('chat-message');
     messages.appendChild(messageContainer);

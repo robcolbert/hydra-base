@@ -1,6 +1,6 @@
 // hydra-worker-top-news.js
 // Copyright (C) 2019 Gab AI, Inc.
-// License: MIT
+// All Rights Reserved
 
 'use strict';
 

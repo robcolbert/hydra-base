@@ -1,0 +1,15 @@
+extends ../layout
+block content
+
+  include ../components/comment-list
+
+  .extension-view
+
+    .container.mb-3
+      +renderCommentList(comments)
+
+block viewjs
+  script(src='/js/gab-dissent.js')
+  script.
+    var hydra = window.hydra = window.hydra || { };
+    hydra.dissent = new hydra.GabDissent();

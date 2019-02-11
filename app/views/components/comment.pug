@@ -1,0 +1,42 @@
+include comment-composer
+mixin renderComment (comment, includeAttribution = false)
+  div(data-comment-id= comment._id, class= comment.parent ? 'comment-reply' : undefined).comment.mb-3
+    if includeAttribution
+      div.comment-attribution.bg-dark.text-light
+        a(href= comment.url.url)= comment.url.title
+    div.comment-header.text-muted.mb-2
+      div.row
+        div.col-auto
+          img(src= comment.user.picture_url).profile-picture
+        div.col
+          div.profile-name.mb-1
+            a(href=`https://gab.com/${comment.user.username}`)
+              span= comment.user.name
+          div.profile-username
+            a(href=`https://gab.com/${comment.user.username}`)
+              span= comment.user.username
+    div.comment-content.mb-1
+      div.comment-body!= marked(anchorme(gabparse(comment.body)))
+    div.comment-footer.bg-dark.text-light
+      div.row.small
+        div.col-auto
+          a(href="#", onclick=`return hydra.dissent.recordVote(event, '${comment._id}', 'up');`)
+            i.fas.fa-chevron-up.mr-1
+            span.stat-upvotes= comment.stats ? numeral(comment.stats.upvoteCount).format('0,0a') : 0
+        div.col-auto
+          a(href="#", onclick=`return hydra.dissent.recordVote(event, '${comment._id}', 'down');`)
+            i.fas.fa-chevron-down.mr-1
+            span.stat-downvotes= comment.stats ? numeral(comment.stats.downvoteCount).format('0,0a') : 0
+        div.col-auto.mr-auto
+          a(href="#", onclick=`return hydra.dissent.toggleReplies(event, '${comment._id}');`)
+            i.fas.fa-reply.mr-1
+            span.stat-replies= comment.stats ? numeral(comment.stats.replies).format('0,0a') : 0
+        div.col-auto
+          span= comment.status
+        div.col-auto
+          a(href=`/comment/${comment._id}`)= moment(comment.created).fromNow()
+    div(data-comment-id= comment._id).comment-replies.d-none
+      .container
+        +renderCommentComposer(comment.url.url, comment._id)
+      div.comment-replies-content
+        span loading...
