@@ -36,10 +36,16 @@ class HydraService {
   }
 
   isSessionJSON (req) {
+    if (req.query.fmt === 'json' || req.get('X-GabNews-AccessToken')) {
+      return true;
+    }
     return req.session && (req.session.sessionType === 'json');
   }
 
   isSessionHTML (req) {
+    if (req.query.fmt === 'html') {
+      return true;
+    }
     return req.session && (req.session.sessionType === 'html');
   }
 
